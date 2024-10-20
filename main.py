@@ -1,17 +1,5 @@
-class calcultor:
-    def __init__(self):
+# é scritto ancjhe di merda
 
-    def sum_number(self):
-        pass
-
-    def sub_number(self):
-        pass
-
-    def mul_number(self):
-        pass
-
-    def div_number(self):
-        pass
 
 
 def main():
