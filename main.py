@@ -9,6 +9,9 @@ class GuiCalculator(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Equation
+        self.equation = ""
+
         # GUI
         self.ui.btn_0.clicked.connect(lambda: self.gui_numbers(0))
         self.ui.btn_1.clicked.connect(lambda: self.gui_numbers(1))
@@ -24,9 +27,18 @@ class GuiCalculator(QMainWindow):
         self.ui.btn_sub.clicked.connect(lambda: self.gui_numbers("-"))
         self.ui.btn_mult.clicked.connect(lambda: self.gui_numbers("*"))
         self.ui.btn_div.clicked.connect(lambda: self.gui_numbers("/"))
+        self.ui.btn_open_parenthesis.clicked.connect(lambda: self.gui_numbers("("))
+        self.ui.btn_close_parenthesis.clicked.connect(lambda: self.gui_numbers(")"))
+        self.ui.btn_comma.clicked.connect(lambda: self.gui_numbers(","))
+        self.ui.btn_sqrt.clicked.connect(lambda: self.gui_numbers(","))
+        self.ui.btn_equal.clicked.connect(self.gui_equal)
 
     def gui_numbers(self, number):
-        return self.ui.display.setText(f"{number}")
+        self.equation = self.equation + str(number)
+        return self.ui.display.setText(self.equation)
+
+    def gui_equal(self):
+        pass
 
 
 def main():
