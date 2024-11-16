@@ -17,3 +17,11 @@ class Parser:
         def parse_expression(expr):
             expr = expr.replace(" ", "")
             return eval_parentheses(expr)
+
+
+def main():
+    p = Parser()
+
+
+if __name__ == '__main__':
+    main()
