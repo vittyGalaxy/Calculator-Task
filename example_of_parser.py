@@ -22,6 +22,8 @@ def parse_expression(expr):
     return eval_parentheses(expr)
 
 # Esempio di utilizzo
-expr = "(5+2) + (3+1)"
-result = parse_expression(expr)
+# expr = "(5+2) + (3+1)"
+expr_correct = "3*(5-2) + (3+1)"
+expr_wrong = "3(5-2) + (3+1)"
+result = parse_expression(expr_wrong)
 print(f"Risultato: {result}")
