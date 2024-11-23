@@ -1,6 +1,7 @@
 import sys
 from gui.calculator import Ui_MainWindow
 from PySide6.QtWidgets import QApplication, QMainWindow
+from Parser import Parser
 
 
 class GuiCalculator(QMainWindow):
@@ -11,6 +12,7 @@ class GuiCalculator(QMainWindow):
 
         # Equation
         self.equation = ""
+        self.parser = Parser()
 
         # GUI
         self.ui.btn_0.clicked.connect(lambda: self.gui_numbers(0))
@@ -38,7 +40,13 @@ class GuiCalculator(QMainWindow):
         return self.ui.display.setText(self.equation)
 
     def gui_equal(self):
-        pass
+        self.parser.set_expr(str(self.equation))
+        result = str(self.parser.parse_expression())
+
+        # azzera l'equazione
+        self.equation = result
+
+        self.ui.display.setText(result)
 
 
 def main():
