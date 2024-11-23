@@ -1,6 +1,7 @@
 from sympy import sympify
 
-def evaluate_expression(expression, precision=5):
+
+def evaluate_expression(expression, precision=2):
     """
     Evaluate mathematical expression
     """
@@ -13,8 +14,8 @@ def evaluate_expression(expression, precision=5):
 
 def main():
     expression1 = "((5+2)+(3-9))"  # Corretto
-    expression2 = "((5+2)+(3-9)"   # Parentesi mancanti
-    expression3 = "(5+2)+3-9)"     # Parentesi non bilanciate
+    expression2 = "((5+2)+(3-9)"  # Parentesi mancanti
+    expression3 = "(5+2)+3-9)"  # Parentesi non bilanciate
 
     print(f"Espressione: {expression1} -> Risultato: {evaluate_expression(expression1)}")
     print(f"Espressione: {expression2} -> Risultato: {evaluate_expression(expression2)}")
@@ -22,4 +23,4 @@ def main():
 
 
 if __name__ == '__main__':
- 	main()
+    main()

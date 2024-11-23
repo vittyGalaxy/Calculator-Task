@@ -40,10 +40,9 @@ class GuiCalculator(QMainWindow):
 
     def gui_equal(self):
         result = evaluate_expression(str(self.equation))
-        self.ui.display.setText(result)
+        self.equation = str(result)
+        self.ui.display.setText(str(result))
 
-        # azzera l'equazione
-        self.equation = result
 
 def main():
     app = QApplication(sys.argv)
