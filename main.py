@@ -11,7 +11,10 @@ class GuiCalculator(QMainWindow):
         self.ui.setupUi(self)
 
         # Equation
-        self.equation = ""
+        # self.equation = ""
+        self.equation = []
+        self.rad = []
+        self.fake_equation = ""
 
         # GUI
         self.ui.btn_0.clicked.connect(lambda: self.gui_numbers(0))
@@ -31,27 +34,49 @@ class GuiCalculator(QMainWindow):
         self.ui.btn_open_parenthesis.clicked.connect(lambda: self.gui_numbers("("))
         self.ui.btn_close_parenthesis.clicked.connect(lambda: self.gui_numbers(")"))
         self.ui.btn_comma.clicked.connect(lambda: self.gui_numbers(","))
-        self.ui.btn_sqrt.clicked.connect(lambda: self.gui_numbers("√"))
+        self.ui.btn_sqrt.clicked.connect(lambda: self.exp_numbers("√", True))
+        self.ui.btn_exponent.clicked.connect(lambda: self.exp_numbers("^", False))
         self.ui.btn_del.clicked.connect(self.del_numbers)
         self.ui.btn_CE.clicked.connect(self.ce_numbers)
         self.ui.btn_equal.clicked.connect(self.gui_equal)
 
+    # def sq_numbers(self):
+    #     self.equation.append(number)
+    #     self.fake_equation = self.fake_equation + str(number)
+    #     return self.ui.display.setText(self.fake_equation)
+
+    def exp_numbers(self, symbol, flag):
+        self.equation.append("**")
+        if (flag):
+            self.equation.append(f" / {self.rad[0]} ")
+
+        self.fake_equation = self.fake_equation + symbol
+        return self.ui.display.setText(self.fake_equation)
+
     def ce_numbers(self):
-        self.equation = ""
-        return self.ui.display.setText(self.equation)
+        # self.equation = ""
+        self.equation = []
+        self.fake_equation = ""
+        return self.ui.display.setText(self.fake_equation)
 
     def del_numbers(self):
-        self.equation = self.equation[:-1]
-        return self.ui.display.setText(self.equation)
+        # self.equation.
+        self.fake_equation = self.fake_equation[:-1]
+        return self.ui.display.setText(self.fake_equation)
 
     def gui_numbers(self, number):
-        self.equation = self.equation + str(number)
-        return self.ui.display.setText(self.equation)
+        self.equation.append(str(number))
+        self.rad.append(str(number))
+        if (number == "+" or number == "-" or number == "*" or number == "/"):
+            self.rad = self.rad[:-2]
+        self.fake_equation = self.fake_equation + str(number)
+        return self.ui.display.setText(self.fake_equation)
 
     def gui_equal(self):
-        result = evaluate_expression(str(self.equation))
-        self.equation = str(result)
-        self.ui.display.setText(self.equation)
+        print(self.equation)
+        result = evaluate_expression("".join(self.equation))
+        self.fake_equation = str(result)
+        self.ui.display.setText(self.fake_equation)
 
 
 def main():
